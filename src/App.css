@@ -20,12 +20,26 @@
   font-size: 50px;
 }
 
+
+main{
+  display: flex;
+  flex-direction: row;
+  
+  flex-wrap: wrap;
+  justify-content: safe;
+  /* background: wheat; */
+  padding-left: 100px;
+
+  height: max-content;
+}
+
+
 .card {
   width: 225px;
   height: 225px;
- 
+
   background-color: white;
-  margin-left: 100px;
+  margin-left: 25px;
   /* overflow: hidden; */
   filter: drop-shadow(-6px 9px 0px rgba(17, 7, 48, 0.25));
 }
@@ -36,6 +50,10 @@
   padding: 5px 5px 0px 14px;
   /* background-color: teal; */
   /* height: 30px; */
+}
+.card_timestamp {
+  letter-spacing: 0.05em;
+  font-size: 10px;
 }
 
 .card_body {
@@ -99,4 +117,17 @@
 .card_controll input {
   width: 15px;
   height: 15px;
+}
+
+
+
+.newCard{
+  background: black;
+  color: white;
+  filter: none;
+}
+
+.newCard input,textarea{
+  color: white;
+  filter: none;
 }
