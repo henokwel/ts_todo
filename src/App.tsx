@@ -24,6 +24,42 @@ const App: React.FC = () => {
       done: false,
       date: new Date(),
     },
+    {
+      id: 11,
+      title: "Testing",
+      description: "Making apps ",
+      done: false,
+      date: new Date(),
+    },
+    {
+      id: 12,
+      title: "Testing",
+      description: "Making apps ",
+      done: false,
+      date: new Date(),
+    },
+    {
+      id: 123,
+      title: "Testing",
+      description: "Making apps ",
+      done: false,
+      date: new Date(),
+    },
+    {
+      id: 1233,
+      title: "Testing",
+      description: "Making apps ",
+      done: false,
+      date: new Date(),
+    },
+
+    {
+      id: 12333,
+      title: "Testing",
+      description: "Making apps ",
+      done: false,
+      date: new Date(),
+    },
   ]);
 
   const [title, setTitle] = useState("");
