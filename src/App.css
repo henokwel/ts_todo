@@ -135,10 +135,10 @@ main {
 .newCard textarea {
   color: white;
 }
-.newCard .card_controll{
-  margin-top: 35px;
-margin-bottom: 0px;
-margin-right: 0px;
+.newCard .card_controll {
+  margin-top: 37px;
+  margin-bottom: 0px;
+  margin-right: 0px;  
 }
 .newCard .card_controll input {
   width: 75px;

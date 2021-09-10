@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import RemoveIcon from "./Assets/Icons/deleteIcon.svg";
 // import { createAvatar } from "@dicebear/avatars";
 // import * as style from "@dicebear/avatars-bottts-sprites";
 import "./App.css";
+import Card from "./components/Card";
 
 interface Data {
   id: number;
@@ -18,20 +18,6 @@ const App: React.FC = () => {
       id: 1,
       title: "Testing",
       description: "Making apps ",
-      done: false,
-      date: new Date(),
-    },
-    {
-      id: 2,
-      title: "Testing 2",
-      description: "Making apps for this company called spotify ",
-      done: false,
-      date: new Date(),
-    },
-    {
-      id: 3,
-      title: "Testing 3",
-      description: "Making apps for this company called spotify ",
       done: false,
       date: new Date(),
     },
@@ -98,10 +84,19 @@ const App: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Runned");
+    
   };
-  // const handleKeyDown = (e: React.KeyboardEvent) => {
-  //   if ((e.key === "Enter") || (e.code === "Enter")) return false
-  // };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    console.log("Run key down");
+    
+    if ((e.key === "Enter") || (e.code === "Enter")) {
+      console.log("Yeahhhhh Enter");
+      e.preventDefault()
+      
+    }
+  };
 
   return (
     <div className="App">
@@ -109,74 +104,23 @@ const App: React.FC = () => {
         <h3>Let's work!</h3>
       </header>
       <main>
-        {data.map((item, index) => {
-          return (
-            <section className="card" key={item.id}>
-              <div className="card_header">
-                <div className="card_avatar">
-                  {/* <img src={svg} alt="" width={50} height={50} /> */}
-                  <img
-                    src={`https://avatars.dicebear.com/api/bottts/:${item.title}.svg`}
-                    alt=""
-                    width={30}
-                    height={30}
-                  />
-                </div>
-                <div className="card_timestamp">
-                  <small>
-                    <time dateTime="2008-02-14 20:00">
-                      {item.date.getUTCHours() +
-                        ":" +
-                        item.date.getUTCMinutes() +
-                        ":" +
-                        item.date.getUTCSeconds()}
-                    </time>
-                  </small>
-                </div>
-              </div>
-
-              <div className="card_body">
-                <form onSubmit={(e) => handleSubmit(e)}>
-                  <div className="card_content">
-                    <input
-                      type="text"
-                      value={item.title}
-                      name="title"
-                      aria-label="title"
-                      placeholder="Title"
-                      onChange={(e) => handleOnChange(index, e)}
-                    />
-                    <textarea
-                      name="description"
-                      value={item.description}
-                      aria-label="description of task"
-                      placeholder="Description"
-                      onChange={(e) => handleOnChange(index, e)}
-                    />
-                  </div>
-
-                  <div className="card_controll">
-                    <button onClick={() => handleRemove(item.id)}>
-                      <img src={RemoveIcon} alt="" width={15} height={15} />
-                    </button>
-                    <input
-                      type="checkbox"
-                      name="check"
-                      onChange={(e) => handleOnChange(index, e)}
-                      checked={item.done}
-                      // onKeyDown={(e) => handleOnChange(null,null)}
-                    />
-                  </div>
-                </form>
-              </div>
-            </section>
-          );
-        })}
+        {data.map((item, index) => <Card
+          key={index}
+          handleKeyDown={handleKeyDown}
+          handleSubmit={handleSubmit}
+          item={item}
+          index={index}
+          handleOnChange={handleOnChange}
+          handleRemove={handleRemove}
+        
+        />
+         
+        )}
 
         <section className="card newCard">
           {/* <div className="card_header">
             <div className="card_avatar">
-               <img
+              <img
                 src={`https://avatars.dicebear.com/api/bottts/:${item.title}.svg`}
                 alt=""
                 width={30}
