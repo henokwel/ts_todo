@@ -1,9 +1,8 @@
-import React, { useRef, FormEvent, useState } from "react";
+import React, { useState } from "react";
 import RemoveIcon from "./Assets/Icons/deleteIcon.svg";
-import { createAvatar } from "@dicebear/avatars";
-import * as style from "@dicebear/avatars-bottts-sprites";
+// import { createAvatar } from "@dicebear/avatars";
+// import * as style from "@dicebear/avatars-bottts-sprites";
 import "./App.css";
-import { time } from "console";
 
 interface Data {
   id: number;
@@ -34,30 +33,40 @@ const App: React.FC = () => {
       done: false,
       date: new Date(),
     },
+    {
+      id: 3,
+      title: "Testing 3",
+      description: "Making apps for this company called spotify ",
+      done: false,
+      date: new Date(),
+    },
   ]);
-  const [editTitle, setEditTitle] = useState<string>("");
-  // const [editTitle,setEditTitle] = useState<string>("")
-  const titleRef = useRef<HTMLInputElement>(null);
-  const descRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleSubmit = (e: FormEvent) => {
+
+  
+  const handleOnChange = (
+    i: number,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const dataArray = [...data];
+
+    if (e.target.name === "title") {
+      data[i].title = e.target.value;
+    } else if (e.target.name === "description") {
+      data[i].description = e.target.value;
+    } else {
+      data[i].done = !data[i].done;
+    }
+    setData(dataArray);
+  };
+
+  const handleRemove = (e: number) => {
+    const curretArray = data.filter((item) => item.id !== e);
+    setData(curretArray);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(titleRef.current!.value);
-    console.log(descRef.current!.value);
-
-    // const handleOnchange = (e:string) => {
-
-    // }
-    setData((prev) => [
-      ...prev,
-      {
-        id: Math.random(),
-        title: titleRef.current!.value,
-        description: descRef.current!.value,
-        done: false,
-        date: new Date(),
-      },
-    ]);
   };
 
   return (
@@ -66,9 +75,9 @@ const App: React.FC = () => {
         <h3>Let's work!</h3>
       </header>
       <main>
-        {data.map((item) => {
+        {data.map((item, index) => {
           return (
-            <section className="card">
+            <section className="card" key={item.id}>
               <div className="card_header">
                 <div className="card_avatar">
                   {/* <img src={svg} alt="" width={50} height={50} /> */}
@@ -82,33 +91,46 @@ const App: React.FC = () => {
                 <div className="card_timestamp">
                   <small>
                     <time dateTime="2008-02-14 20:00">
-                      {item.date.toDateString()}
+                      {item.date.getUTCHours() +
+                        ":" +
+                        item.date.getUTCMinutes() +
+                        ":" +
+                        item.date.getUTCSeconds()}
                     </time>
                   </small>
                 </div>
               </div>
 
               <div className="card_body">
-                <form>
+                <form onSubmit={(e) => handleSubmit(e)}>
                   <div className="card_content">
                     <input
                       type="text"
                       value={item.title}
+                      name="title"
                       aria-label="title"
                       placeholder="Title"
+                      onChange={(e) => handleOnChange(index, e)}
                     />
                     <textarea
+                      name="description"
                       value={item.description}
                       aria-label="description of task"
                       placeholder="Description"
+                      onChange={(e) => handleOnChange(index, e)}
                     />
                   </div>
 
                   <div className="card_controll">
-                    <button>
+                    <button onClick={() => handleRemove(item.id)}>
                       <img src={RemoveIcon} alt="" width={15} height={15} />
                     </button>
-                    <input type="checkbox" checked={item.done} />
+                    <input
+                      type="checkbox"
+                      name="check"
+                      onChange={(e) => handleOnChange(index, e)}
+                      checked={item.done}
+                    />
                   </div>
                 </form>
               </div>
@@ -136,7 +158,7 @@ const App: React.FC = () => {
           </div> */}
 
           <div className="card_body">
-            <form>
+            <form onSubmit={(e) => handleSubmit(e)}>
               <div className="card_content">
                 <input
                   type="text"
@@ -151,12 +173,12 @@ const App: React.FC = () => {
                 />
               </div>
 
-              {/* <div className="card_controll">
+              <div className="card_controll">
                 <button>
-                  <img src={RemoveIcon} alt="" width={15} height={15} />
+                  {/* <img src={RemoveIcon} alt="" width={15} height={15} /> */}
                 </button>
-                <input type="checkbox" checked={item.done} />
-              </div> */}
+                <input type="submit" value="Enter" />
+              </div>
             </form>
           </div>
         </section>
