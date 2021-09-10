@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 // import { createAvatar } from "@dicebear/avatars";
 // import * as style from "@dicebear/avatars-bottts-sprites";
+import "./styles/Card.css";
 import "./App.css";
 import Card from "./components/Card";
-
+import { CardNew } from "./components/CardNew";
+ 
 interface Data {
   id: number;
   title: string;
@@ -11,6 +13,7 @@ interface Data {
   done: boolean;
   date: Date;
 }
+
 
 const App: React.FC = () => {
   const [data, setData] = useState<Data[]>([
@@ -24,7 +27,7 @@ const App: React.FC = () => {
   ]);
 
   const [title, setTitle] = useState("");
-  const [descritption, setDescritption] = useState("");
+  const [description, setdescription] = useState("");
 
   // Create New Card Functions
 
@@ -34,20 +37,20 @@ const App: React.FC = () => {
     if (e.target.name === "title") {
       setTitle(e.target.value);
     } else {
-      setDescritption(e.target.value);
+      setdescription(e.target.value);
     }
   };
 
   const handleNewCardSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!title.trim() || !descritption.trim()) return;
+    if (!title.trim() || !description.trim()) return;
 
     setData([
       ...data,
       {
         title: title,
-        description: descritption,
+        description: description,
         id: Math.random(),
         done: false,
         date: new Date(),
@@ -56,7 +59,7 @@ const App: React.FC = () => {
 
     // Reset value
     setTitle("");
-    setDescritption("");
+    setdescription("");
   };
 
   //  Card List Functions
@@ -77,24 +80,17 @@ const App: React.FC = () => {
   };
 
   const handleRemove = (e: number) => {
-    console.log("Removed!!");
     const curretArray = data.filter((item) => item.id !== e);
     setData(curretArray);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Runned");
-    
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    console.log("Run key down");
-    
-    if ((e.key === "Enter") || (e.code === "Enter")) {
-      console.log("Yeahhhhh Enter");
-      e.preventDefault()
-      
+    if (e.key === "Enter" || e.code === "Enter") {
+      e.preventDefault();
     }
   };
 
@@ -104,67 +100,24 @@ const App: React.FC = () => {
         <h3>Let's work!</h3>
       </header>
       <main>
-        {data.map((item, index) => <Card
-          key={index}
-          handleKeyDown={handleKeyDown}
-          handleSubmit={handleSubmit}
-          item={item}
-          index={index}
-          handleOnChange={handleOnChange}
-          handleRemove={handleRemove}
-        
+        {data.map((item, index) => (
+          <Card
+            key={index}
+            handleKeyDown={handleKeyDown}
+            handleSubmit={handleSubmit}
+            item={item}
+            index={index}
+            handleOnChange={handleOnChange}
+            handleRemove={handleRemove}
+          />
+        ))}
+
+        <CardNew
+          title={title}
+          description={description}
+          handleNewCardSubmit={handleNewCardSubmit}
+          handleNew_onChange={handleNew_onChange}
         />
-         
-        )}
-
-        <section className="card newCard">
-          {/* <div className="card_header">
-            <div className="card_avatar">
-              <img
-                src={`https://avatars.dicebear.com/api/bottts/:${item.title}.svg`}
-                alt=""
-                width={30}
-                height={30}
-              />
-            </div>
-            <div className="card_timestamp">
-              <small>
-                <time dateTime="2008-02-14 20:00">
-                  {item.date.toDateString()}
-                </time>
-              </small>
-            </div>
-          </div> */}
-
-          <div className="card_body">
-            <form onSubmit={(e) => handleNewCardSubmit(e)}>
-              <div className="card_content">
-                <input
-                  type="text"
-                  value={title}
-                  aria-label="title"
-                  placeholder="Title"
-                  name="title"
-                  onChange={(e) => handleNew_onChange(e)}
-                />
-                <textarea
-                  value={descritption}
-                  aria-label="description of task"
-                  placeholder="Description"
-                  name="description"
-                  onChange={(e) => handleNew_onChange(e)}
-                />
-              </div>
-
-              <div className="card_controll">
-                {/* <button> */}
-                {/* <img src={RemoveIcon} alt="" width={15} height={15} /> */}
-                {/* </button> */}
-                <input type="submit" value="Enter" />
-              </div>
-            </form>
-          </div>
-        </section>
       </main>
     </div>
   );

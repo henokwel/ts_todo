@@ -1,5 +1,6 @@
 import React from "react";
 import RemoveIcon from "../Assets/Icons/deleteIcon.svg";
+import '../styles/Card.css'
 
 interface CardProps {
   item: {

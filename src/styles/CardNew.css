@@ -1,0 +1,30 @@
+.newCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: black;
+  color: white;
+  filter: none;
+}
+
+.newCard input {
+  color: white;
+  filter: none;
+}
+.newCard textarea {
+  color: white;
+}
+.newCard .card_controll {
+  margin-top: 37px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+}
+.newCard .card_controll input {
+  width: 75px;
+  height: 35px;
+
+  background-color: white;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
