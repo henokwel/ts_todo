@@ -5,7 +5,8 @@ import "./styles/Card.css";
 import "./App.css";
 import Card from "./components/Card";
 import { CardNew } from "./components/CardNew";
- 
+import { DummyData } from "./Utils/DummyData";
+
 interface Data {
   id: number;
   title: string;
@@ -14,53 +15,8 @@ interface Data {
   date: Date;
 }
 
-
 const App: React.FC = () => {
-  const [data, setData] = useState<Data[]>([
-    {
-      id: 1,
-      title: "Testing",
-      description: "Making apps ",
-      done: false,
-      date: new Date(),
-    },
-    {
-      id: 11,
-      title: "Testing",
-      description: "Making apps ",
-      done: false,
-      date: new Date(),
-    },
-    {
-      id: 12,
-      title: "Testing",
-      description: "Making apps ",
-      done: false,
-      date: new Date(),
-    },
-    {
-      id: 123,
-      title: "Testing",
-      description: "Making apps ",
-      done: false,
-      date: new Date(),
-    },
-    {
-      id: 1233,
-      title: "Testing",
-      description: "Making apps ",
-      done: false,
-      date: new Date(),
-    },
-
-    {
-      id: 12333,
-      title: "Testing",
-      description: "Making apps ",
-      done: false,
-      date: new Date(),
-    },
-  ]);
+  const [data, setData] = useState<Data[]>(DummyData);
 
   const [title, setTitle] = useState("");
   const [description, setdescription] = useState("");

@@ -11,12 +11,12 @@
   align-items: flex-end;
   justify-content: flex-start;
   /* font-size: calc(10px + 2vmin); */
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   color: black;
   padding-left: 80px;
 }
 
-.App-header h1 {
+.App-header h3 {
   margin: 0;
 }
 
@@ -33,7 +33,7 @@ main {
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 858px) {
   .App-header{
   padding-left: 10px;
   }
@@ -42,13 +42,20 @@ main {
     margin-bottom: 0px;
   }
   main {
-    justify-content: center;
-    padding-left: 0px;
+    /* justify-content: center; */
+    padding-left: 10px;
     /* width: auto;
     background-color: grey; */
   }
 }
 
 /* Extra small devices (phones, 600px and down) */
-/* @media only screen and (max-width: 600px) {
-} */
+@media only screen and (max-width: 560px) {
+
+  main {
+    /* justify-content: center; */
+    padding-left: 10px;
+    /* width: auto;
+    background-color: grey; */
+  }
+}

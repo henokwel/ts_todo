@@ -13,6 +13,7 @@ interface CardProps {
 }
 
 export const CardNew: React.FC<CardProps> = (props) => {
+  
   return (
     <section className="card newCard">
       <div className="card_body">

@@ -9,6 +9,15 @@
   filter: drop-shadow(-6px 9px 0px rgba(17, 7, 48, 0.25));
 }
 
+/* Extra small devices (phones, 600px and down) */
+/* @media only screen and (max-width: 560px) {
+
+    .card{
+        margin-left: 0px;
+    }
+  } */
+  
+
 .card_header {
   display: flex;
   justify-content: space-between;
@@ -29,7 +38,7 @@
 .card_body form {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   height: 100%;
 }
 
