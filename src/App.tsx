@@ -12,11 +12,6 @@ interface Data {
   date: Date;
 }
 
-// Dynamic Form
-// https://codesandbox.io/s/react-dynamic-form-fields-3fjbd?from-embed=&file=/src/index.js:547-564
-// Icon Gen
-// https://avatars.dicebear.com/
-
 const App: React.FC = () => {
   const [data, setData] = useState<Data[]>([
     {
@@ -42,8 +37,43 @@ const App: React.FC = () => {
     },
   ]);
 
+  const [title, setTitle] = useState("");
+  const [descritption, setDescritption] = useState("");
 
-  
+  // Create New Card Functions
+
+  const handleNew_onChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    if (e.target.name === "title") {
+      setTitle(e.target.value);
+    } else {
+      setDescritption(e.target.value);
+    }
+  };
+
+  const handleNewCardSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!title.trim() || !descritption.trim()) return;
+
+    setData([
+      ...data,
+      {
+        title: title,
+        description: descritption,
+        id: Math.random(),
+        done: false,
+        date: new Date(),
+      },
+    ]);
+
+    // Reset value
+    setTitle("");
+    setDescritption("");
+  };
+
+  //  Card List Functions
   const handleOnChange = (
     i: number,
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -61,6 +91,7 @@ const App: React.FC = () => {
   };
 
   const handleRemove = (e: number) => {
+    console.log("Removed!!");
     const curretArray = data.filter((item) => item.id !== e);
     setData(curretArray);
   };
@@ -68,6 +99,9 @@ const App: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+  // const handleKeyDown = (e: React.KeyboardEvent) => {
+  //   if ((e.key === "Enter") || (e.code === "Enter")) return false
+  // };
 
   return (
     <div className="App">
@@ -130,6 +164,7 @@ const App: React.FC = () => {
                       name="check"
                       onChange={(e) => handleOnChange(index, e)}
                       checked={item.done}
+                      // onKeyDown={(e) => handleOnChange(null,null)}
                     />
                   </div>
                 </form>
@@ -158,25 +193,29 @@ const App: React.FC = () => {
           </div> */}
 
           <div className="card_body">
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleNewCardSubmit(e)}>
               <div className="card_content">
                 <input
                   type="text"
-                  value="Title"
+                  value={title}
                   aria-label="title"
                   placeholder="Title"
+                  name="title"
+                  onChange={(e) => handleNew_onChange(e)}
                 />
                 <textarea
-                  value="Descript"
+                  value={descritption}
                   aria-label="description of task"
                   placeholder="Description"
+                  name="description"
+                  onChange={(e) => handleNew_onChange(e)}
                 />
               </div>
 
               <div className="card_controll">
-                <button>
-                  {/* <img src={RemoveIcon} alt="" width={15} height={15} /> */}
-                </button>
+                {/* <button> */}
+                {/* <img src={RemoveIcon} alt="" width={15} height={15} /> */}
+                {/* </button> */}
                 <input type="submit" value="Enter" />
               </div>
             </form>

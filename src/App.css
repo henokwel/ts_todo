@@ -122,7 +122,7 @@ main {
 .newCard {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
   background: black;
   color: white;
   filter: none;
@@ -135,10 +135,10 @@ main {
 .newCard textarea {
   color: white;
 }
-.newCard .card_controll {
+.newCard .card_controll{
   margin-top: 35px;
-  margin-bottom: 0px;
-  margin-right: 0px;
+margin-bottom: 0px;
+margin-right: 0px;
 }
 .newCard .card_controll input {
   width: 75px;
