@@ -28,3 +28,22 @@
   border: none;
   cursor: pointer;
 }
+
+
+.card_addBtn_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  /* background-color: grey; */
+}
+
+.card_addBtn_container:hover{
+  opacity: 0.8;
+}
+
+.card_addBtn_container button{
+  background: transparent;
+  border:  none;
+}
