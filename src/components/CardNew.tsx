@@ -55,9 +55,6 @@ export const CardNew: React.FC<CardProps> = (props) => {
             </div>
 
             <div className="card_controll">
-              {/* <button> */}
-              {/* <img src={RemoveIcon} alt="" width={15} height={15} /> */}
-              {/* </button> */}
               <input type="submit" value="Enter" />
             </div>
           </form>
