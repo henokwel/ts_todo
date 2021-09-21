@@ -1,6 +1,6 @@
 import React from "react";
 import RemoveIcon from "../Assets/Icons/deleteIcon.svg";
-import '../styles/Card.css'
+import "../styles/Card.css";
 
 interface CardProps {
   item: {
@@ -38,18 +38,13 @@ const Card: React.FC<CardProps> = (props) => {
             <time dateTime="2008-02-14 20:00">
               {props.item.date.getUTCHours() +
                 ":" +
-                props.item.date.getUTCMinutes() +
-                ":" +
-                props.item.date.getUTCSeconds()}
+                props.item.date.getUTCMinutes()}
             </time>
           </small>
         </div>
       </div>
       <div className="card_body">
-        <form
-          onSubmit={(e) => props.handleSubmit(e)}
-        
-        >
+        <form onSubmit={(e) => props.handleSubmit(e)}>
           <div className="card_content">
             <input
               type="text"
@@ -59,7 +54,6 @@ const Card: React.FC<CardProps> = (props) => {
               placeholder="Title"
               onChange={(e) => props.handleOnChange(props.index, e)}
               onKeyDown={(e) => props.handleKeyDown(e)}
-
             />
             <textarea
               name="description"
@@ -68,7 +62,6 @@ const Card: React.FC<CardProps> = (props) => {
               placeholder="Description"
               onChange={(e) => props.handleOnChange(props.index, e)}
               // onKeyDown={(e) => props.handleKeyDown(e)}
-
             />
           </div>
 
